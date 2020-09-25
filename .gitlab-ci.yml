@@ -7,8 +7,6 @@ production:
   stage: production
   image: ruby:latest
   script:
-    - npm install
-    - npm build
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
