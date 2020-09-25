@@ -1,21 +1,15 @@
 image: node:latest
 
 stages:
-  - build
   - production
-
-build:
-  image: node
-  script:
-    - echo "Start building App"
-    - npm install
-    - npm build
-    - echo "Build successfully!
 
 production:
   stage: production
   image: ruby:latest
   script:
+    - apt-get install npm
+    - npm install
+    - npm build
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
