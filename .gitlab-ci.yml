@@ -7,7 +7,6 @@ production:
   stage: production
   image: ruby:latest
   script:
-    - apt-get install npm
     - npm install
     - npm build
     - apt-get update -qy
