@@ -1,7 +1,16 @@
 image: node:latest
 
 stages:
+  - build
   - production
+
+build:
+  image: node
+  script:
+    - echo "Start building App"
+    - npm install
+    - npm build
+    - echo "Build successfully!
 
 production:
   stage: production
