@@ -5,14 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 const test = () => {
-    fetch("https://hknt-backend-prod.herokuapp.com/api/test").then(json => console.log(json))
+    fetch(
+        "https://hknt-backend-prod.herokuapp.com/api/test", {
+            crossDomain: true,
+            method: "GET"
+        }
+    )
+        .then(json => console.log(json))
 }
 test()
 
