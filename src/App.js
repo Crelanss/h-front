@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import Header from './header/Header'
+import Body from "./authorisation/Body";
+import Profile from "./profile/Profile";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 
+const Main=styled.div`
+  display:flex;
+  flex-direction:column;
+`
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Main>
+                <Header/>
+                <Switch>
+                    <Route path={'/register'}>
+                        <Body/>
+                    </Route>
+                    <Route path={'/profile'}>
+                        <Profile/>
+                    </Route>
+                </Switch>
+            </Main>
+
+        </BrowserRouter>
+    );
 }
 
 export default App;
+
