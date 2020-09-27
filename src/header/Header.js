@@ -22,7 +22,7 @@ const LogoImg=styled.img`
 function Header(){
     return(
         <Navbar>
-            <LogoImg src={'logo.svg'}/>
+            <LogoImg src={'/logo.svg'}/>
             <Line/>
         </Navbar>
     );

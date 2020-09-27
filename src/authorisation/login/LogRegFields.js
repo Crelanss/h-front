@@ -33,7 +33,7 @@ function LogRegFields(){
         <LogRegFieldsComponent>
             <TextFields id="outlined-basic" label="Логин" variant="outlined"/>
             <TextFields id="outlined-basic" label="Пароль" variant="outlined"/>
-            <Link to='/profile'> <LogButton >Войти</LogButton></Link>
+            <Link to='/profile/lk'> <LogButton >Войти</LogButton></Link>
         </LogRegFieldsComponent>
     )
 }
