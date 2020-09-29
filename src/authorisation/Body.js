@@ -2,6 +2,10 @@ import React from 'react';
 import styled from "styled-components";
 import LoginWindow from "./login/LoginWindow";
 import RegisterWindow from "./register/RegisterWindow";
+import {Route, Switch} from "react-router-dom";
+import {withRouter} from 'react-router-dom';
+import CreateASecretQuestion from "./createASecreetQuestion/CreateASecretQuestion";
+
 
 const RegisterWrapper=styled.div`
   width:100vw;
@@ -41,47 +45,39 @@ const ButtonText=styled.button`
     }
 `
 
-class LoginRegister extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={isLogin:true}
-        this.loginClick=this.loginClick.bind(this)
-        this.registerClick=this.registerClick.bind(this)
-    }
-    registerClick(){
-        this.setState(state => ({isLogin:false}))
-    }
-    loginClick(){
-        this.setState(state => ({isLogin:true}))
-    }
-    render() {
-        if(this.state.isLogin){ return(
-            <Border>
-                <LogRegButtonsComponent>
-                    <ButtonText onClick={this.loginClick}>Вход</ButtonText>
-                    <ButtonText onClick={this.registerClick}>Регистрация</ButtonText>
-                </LogRegButtonsComponent>
-                <LoginWindow/>
-            </Border>
-        )}
-            else{return(
-            <Border>
-                <LogRegButtonsComponent>
-                    <ButtonText onClick={this.loginClick}>Вход</ButtonText>
-                    <ButtonText onClick={this.registerClick}>Регистрация</ButtonText>
-                </LogRegButtonsComponent>
-                <RegisterWindow/>
-            </Border>
-        )}
+class LoginRegister extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+    nextPath(path) {
+        this.props.history.push(path);
+    }
+
+    render() {
+        return (
+            <RegisterWrapper>
+                <Border>
+                    <LogRegButtonsComponent>
+                        <ButtonText onClick={() => this.nextPath('/auth/login')}>Вход</ButtonText>
+                        <ButtonText onClick={() => this.nextPath('/auth/register')}>Регистрация</ButtonText>
+                    </LogRegButtonsComponent>
+                    <Switch>
+                        <Route path={"/auth/login"}>
+                            <LoginWindow/>
+                        </Route>
+                        <Route path={"/auth/register"}>
+                            <RegisterWindow/>
+                        </Route>
+                        <Route path={'/auth/secret'}>
+                            <CreateASecretQuestion/>
+                        </Route>
+                    </Switch>
+                </Border>
+            </RegisterWrapper>
+        )
     }
 }
-function Body(){
-    return(
-       <RegisterWrapper>
-           <LoginRegister/>
-       </RegisterWrapper>
-    );
-}
-export default Body;
+
+export default withRouter(LoginRegister) ;
 

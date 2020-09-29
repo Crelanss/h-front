@@ -5,6 +5,7 @@ import MyDocuments from "./myDocuments/MyDocuments";
 import UploadDoc from "./uploaddoc/UploadDoc";
 import {Switch, Route} from "react-router-dom";
 import {withRouter} from 'react-router-dom';
+import Map from "../googleMap/GoogleMap";
 
 
 const ProfileMain=styled.div`
@@ -56,7 +57,6 @@ class Profile extends React.Component{
                     <ButtonPanel>
                         <ButtonText onClick={() => this.nextPath('/profile/lk') }>Личный кабинет</ButtonText>
                         <ButtonText onClick={() => this.nextPath('/profile/doclist') }>Мои документы</ButtonText>
-                        <ButtonText>Настройки</ButtonText>
                         <Line/>
                     </ButtonPanel>
                     <Switch>
@@ -68,6 +68,9 @@ class Profile extends React.Component{
                         </Route>
                         <Route path={"/profile/uploaddoc"}>
                             <UploadDoc/>
+                        </Route>
+                        <Route path={"/profile/map"}>
+                            <Map/>
                         </Route>
                     </Switch>
                 </ProfileMain>

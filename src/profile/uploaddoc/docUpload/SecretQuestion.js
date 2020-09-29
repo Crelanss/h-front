@@ -35,7 +35,12 @@ const props = {
     textAlign:'center',
     multiline: true,
     variant: 'outlined',
-    InputProps: {style: inputStyle}
+    InputProps: {style: inputStyle},
+    id:'secretField'
+}
+function SecretChecker(){
+    let secretChecker=document.getElementById('secretField').value
+
 }
 function SecretQuestion(){
     return(

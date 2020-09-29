@@ -12,7 +12,6 @@ function DocList(){
     return(
         <DocListComponent>
             <DocumentDescription/>
-            <DocumentDescription/>
 
         </DocListComponent>
     )

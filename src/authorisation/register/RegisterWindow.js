@@ -2,7 +2,6 @@ import React from 'react';
 import styled from "styled-components";
 import RegisterMenu from "./RegisterMenu";
 
-
 const Register=styled.div`
     display:flex;
     width:600px;

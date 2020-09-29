@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import TextField from '@material-ui/core/TextField';
-import {Link, NavLink} from "react-router-dom";
+import {userArray,users} from "../register/RegisterMenu.js";
+import {withRouter} from 'react-router-dom';
 
 const LogRegFieldsComponent=styled.div`
     width:100%;
@@ -28,13 +29,32 @@ const LogButton=styled.button`
     letter-spacing:1px;
 `
 
-function LogRegFields(){
-    return(
-        <LogRegFieldsComponent>
-            <TextFields id="outlined-basic" label="Логин" variant="outlined"/>
-            <TextFields id="outlined-basic" label="Пароль" variant="outlined"/>
-            <Link to='/profile/lk'> <LogButton >Войти</LogButton></Link>
-        </LogRegFieldsComponent>
-    )
+class LogRegFields extends React.Component{
+    constructor(props) {
+        super(props);
+    }
+    nextPath(path) {
+        this.props.history.push(path);
+    }
+    loginer(){
+        for (let i=0; i<userArray.length;i++){
+            if(userArray[i].login==document.getElementById('userLogin').value){
+                if(userArray[i].password==document.getElementById('userPassword').value){
+                    this.nextPath('/profile/lk')
+                } else{alert('неверный пароль')}
+            } else{alert('неверный логин')}
+        }
+    }
+
+    render() {
+        return (
+            <LogRegFieldsComponent>
+                <TextFields id="userLogin" label="Логин" variant="outlined"/>
+                <TextFields id="userPassword" label="Пароль" variant="outlined" type='password'/>
+                <LogButton onClick={()=>this.loginer()}>Войти</LogButton>
+            </LogRegFieldsComponent>
+        )
+    }
+
 }
-export default LogRegFields;
+export default withRouter(LogRegFields);

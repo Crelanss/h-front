@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import ConfirmText from "./Confirmer";
+import {withRouter} from 'react-router-dom';
 const RegisterMenuComponent=styled.div`
     width:100%;
     height:90%;
@@ -26,18 +27,45 @@ const LogButton=styled.button`
     font-size: 24px;
     letter-spacing:1px;
 `
-
-function RegisterMenu(){
-    return(
-        <RegisterMenuComponent>
-            <TextFields id="outlined-basic" label="Логин" variant="outlined" />
-            <TextFields id="outlined-basic" label="E-mail" variant="outlined" />
-            <TextFields id="outlined-basic" label="Пароль" variant="outlined" />
-            <TextFields id="outlined-basic" label="Повторите пароль" variant="outlined" />
-            <LogButton>Регистрация</LogButton>
-            <ConfirmText/>
-        </RegisterMenuComponent>
-    )
+let userArray=[]
+let userCounter=0
+let users
+class User {
+    constructor(login,password,eMail) {
+        this.login = login;
+        this.password=password;
+        this.eMail=eMail;
+    }
 }
-
-export default RegisterMenu;
+function CreateAUser(){
+    let userName=document.getElementById('loginField').value;
+    let userPassword=document.getElementById('passwordField').value;
+    let userEMail=document.getElementById('eMailField').value;
+    userArray[userCounter]=new User(userName, userPassword,userEMail);
+    userCounter+=1
+}
+class RegisterMenu extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    nextPath(path) {
+        this.props.history.push(path);
+    }
+    confirmReg(){
+        CreateAUser();
+        this.nextPath('/auth/secret')
+    }
+    render() {
+        return (
+            <RegisterMenuComponent>
+                <TextFields id="loginField" label="Логин" variant="outlined" />
+                <TextFields id="eMailField" label="E-mail" variant="outlined"/>
+                <TextFields id="passwordField" label="Пароль" variant="outlined" type='password'/>
+                <LogButton onClick={()=>this.confirmReg()}>Регистрация</LogButton>
+                <ConfirmText/>
+            </RegisterMenuComponent>
+        )
+    }
+}
+export {userArray,userCounter,users}
+export default withRouter(RegisterMenu);

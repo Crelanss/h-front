@@ -41,8 +41,8 @@ function UserPhotoInfo(){
         <img src={'/profile.svg'} height={'150px'} />
             <UserInfo>
                 <TextContainer><TextImmutable>Дата рождения: </TextImmutable><TextMutable>07.02.2001</TextMutable></TextContainer>
-                <TextContainer><TextImmutable>ФИО: </TextImmutable><TextMutable>Артем</TextMutable></TextContainer>
-                <TextContainer><TextImmutable>Гражданство: </TextImmutable><TextMutable>РАСИЯ</TextMutable></TextContainer>
+                <TextContainer><TextImmutable>Пол: </TextImmutable><TextMutable>Мужской</TextMutable></TextContainer>
+                <TextContainer><TextImmutable>Гражданство: </TextImmutable><TextMutable>Россия</TextMutable></TextContainer>
             </UserInfo>
         </UserPhotoInfoComponent>
     )
